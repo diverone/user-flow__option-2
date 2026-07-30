@@ -5,8 +5,12 @@
 .booking-selection-summary__copy { min-width: 0; flex: 1; }
 .booking-selection-summary__label { display: block; margin-bottom: 3px; color: var(--cal-slate); font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
 .booking-selection-summary__name { display: block; overflow: hidden; font-size: 13px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
-.booking-selection-summary__meta { display: block; margin-top: 3px; color: var(--cal-slate); font-size: 12px; }
+.booking-selection-summary__meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 3px; color: var(--cal-slate); font-size: 12px; }
+.booking-selection-summary__meta-main { display: inline-flex; align-items: center; gap: 16px; min-width: 0; }
+.meta-item { display: inline-flex; align-items: center; gap: 4px; }
+.meta-icon { flex-shrink: 0; }
 .booking-selection-summary__edit { flex: 0 0 auto; color: var(--cal-blue); }
+.booking-selection-summary__badge { font-weight: 700; color: var(--cal-slate); }
 .booking-selection-summary--specialist { margin-top: 8px; }
 .booking-selection-summary--date { margin-top: 8px; }
 .booking-selection-summary--time { margin-top: 8px; }

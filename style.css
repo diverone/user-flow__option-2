@@ -236,7 +236,9 @@ body[data-step="summary"] .profile__specialist { display: block; }
 }
 
 .service__meta {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
   font-size: 12px;
   color: var(--cal-slate);
   margin-top: 2px;
