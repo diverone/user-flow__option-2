@@ -2,6 +2,7 @@
 .profile--clinic, .profile--specialist { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 12px; min-height: 0; text-align: left; }
 .profile--clinic .profile__photo, .profile--specialist .profile__photo { width: 48px; height: 48px; margin: 0; }
 .booking-selection-summary { display: flex; align-items: center; gap: 10px; min-height: 60px; margin: 24px 32px 0; padding: 0 12px; border: 1px solid var(--border); border-radius: 12px; color: var(--cal-navy); text-decoration: none; box-sizing: border-box; }
+.booking-step .booking-selection-summary { margin-left: 0; margin-right: 0; }
 .booking-selection-summary__copy { min-width: 0; flex: 1; }
 .booking-selection-summary__label { display: block; margin-bottom: 3px; color: var(--cal-slate); font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
 .booking-selection-summary__name { display: block; overflow: hidden; font-size: 13px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
@@ -18,7 +19,8 @@
 .checkout-alternative .checkout-selection-cards { display: grid; gap: 8px; margin: 0 0 18px; }
 .checkout-alternative .booking-selection-summary { margin: 0; }
 .checkout-alternative .checkout__payment-section { margin-top: 8px; }
-.booking-step--with-summary { padding-top: 18px; }
+.booking-step--with-summary .booking-selection-summary:first-child { margin-top: 0; }
+.booking-step--with-summary .step-title { margin-top: 18px; }
 .schedule__location { position: relative; margin-top: 5px; color: var(--cal-slate); font-size: 13px; }
 .schedule__location summary { display: flex; align-items: center; gap: 4px; cursor: pointer; list-style: none; }
 .schedule__location summary::-webkit-details-marker { display: none; }
