@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Specialistas pasirinktas</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="booking-static.css">
+  <link rel="stylesheet" href="booking-schedule.css">
+  
+</head>
+<body class="is-authenticated has-back">
+  
+  <header class="profile profile--clinic profile--clinic--with-back">
+    <a class="back-btn" href="option2__service-selected.html" aria-label="Atgal">‹</a>
+    <img class="profile__photo" src="galibuti_favicon.png" alt="Galibuti logotipas">
+    <div class="schedule__profile-copy">
+      <p class="profile__name">Galibuti</p>
+      <p class="profile__role">Psichologijos ir psichiatrijos klinika</p>
+      <div class="schedule__location-picker">
+        <input type="radio" name="service-location" id="service-location-centras" checked>
+        <input type="radio" name="service-location" id="service-location-savanoriai">
+        <input type="radio" name="service-location" id="service-location-siaure">
+        <input type="radio" name="service-location" id="service-location-online">
+        <details class="schedule__location">
+          <summary><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1116 0z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="schedule__location-current"><span class="schedule__location-current--centras">Gedimino pr. 15, Vilnius</span><span class="schedule__location-current--savanoriai">Savanorių pr. 3, Vilnius</span><span class="schedule__location-current--siaure">Ukmergės g. 222, Vilnius</span><span class="schedule__location-current--online">Online konsultacija</span></span><svg class="schedule__location-chevron" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="schedule__location-menu">
+            <label for="service-location-centras"><strong>Centras</strong><span>Gedimino pr. 15, Vilnius</span></label>
+            <label for="service-location-savanoriai"><strong>Savanoriai</strong><span>Savanorių pr. 3, Vilnius</span></label>
+            <label for="service-location-siaure"><strong>Šiaurės miestelis</strong><span>Ukmergės g. 222, Vilnius</span></label>
+            <label for="service-location-online"><strong>Online konsultacija</strong><span>Nuotoliu</span></label>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+  <a class="booking-selection-summary" href="option2__service.html" aria-label="Keisti paslaugą"><span class="booking-selection-summary__copy"><span class="booking-selection-summary__name">Psichologinis konsultavimas / psichoterapija</span><span class="booking-selection-summary__meta">50 min · 40 €</span></span><svg class="booking-selection-summary__edit" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg></a>
+  <a class="booking-selection-summary booking-selection-summary--specialist" href="option2__service-selected.html" aria-label="Keisti specialistą"><img class="booking-selection-summary__photo" src="placeholder-women.jpg" alt="Irma Petraitytė"><span class="booking-selection-summary__copy"><span class="booking-selection-summary__name">Irma Petraitytė</span><span class="booking-selection-summary__meta">Psichologė</span></span><svg class="booking-selection-summary__edit" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg></a>
+  <main class="booking-step booking-step--with-summary">
+    <div class="container">
+      <h1 class="step-title">Pasirinkite laiką</h1>
+      <ul class="times__grid">
+        <li><a class="booking-link times__slot" href="option2__checkout.html">09:00</a></li>
+        <li><a class="booking-link times__slot" href="option2__checkout.html">10:00</a></li>
+        <li><a class="booking-link times__slot" href="option2__checkout.html">11:00</a></li>
+        <li><a class="booking-link times__slot" href="option2__checkout.html">12:00</a></li>
+        <li><a class="booking-link times__slot" href="option2__checkout.html">13:00</a></li>
+        <li><a class="booking-link times__slot" href="option2__checkout.html">14:00</a></li>
+        <li><a class="booking-link times__slot" href="option2__checkout.html">15:00</a></li>
+        <li><a class="booking-link times__slot" href="option2__checkout.html">16:00</a></li>
+        <li><a class="booking-link times__slot" href="option2__checkout.html">17:00</a></li>
+        <li><a class="booking-link times__slot" href="option2__checkout.html">18:00</a></li>
+        <li><a class="booking-link times__slot" href="option2__checkout.html">19:00</a></li>
+        <li><a class="booking-link times__slot" href="option2__checkout.html">20:00</a></li>
+        <li><a class="booking-link times__slot" href="option2__checkout.html">21:00</a></li>
+      </ul>
+    </div>
+  </main>
+  <script>document.querySelectorAll('input[name="service-location"]').forEach((input) => input.addEventListener('change', () => document.querySelector('.schedule__location').removeAttribute('open')));</script>
+</body>
+</html>

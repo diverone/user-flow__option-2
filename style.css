@@ -1,0 +1,553 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+ul { list-style: none; }
+
+:root {
+  --bg: #f5f5f7;
+  --white: #ffffff;
+  --border: rgba(0,0,0,0.08);
+  --border-mid: rgba(0,0,0,0.12);
+  --accent: #0071e3;
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --subtle: #aeaeb2;
+  --green: #34c759;
+  --amber: #ff9500;
+  --red: #ff3b30;
+
+  /* Calendly calendar tokens */
+  --cal-navy: #0a2540;
+  --cal-slate: #476788;
+  --cal-blue: #006bff;
+  --cal-blue-text: #004eba;
+  --cal-blue-bg: #f4f8ff;
+
+  /* Etch-style content width (container max-width) */
+  --content-width: 1140px;
+}
+
+/* ── PAGE: html centers the card, provides the backdrop + query container ── */
+html {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FAFAFA;
+  /* Query container: the card adapts to available width, not device */
+  container-type: inline-size;
+}
+
+/* ── CARD: body is the booking widget ── */
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 416px;
+  height: min(780px, calc(100vh - 48px));
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+  overflow: hidden;
+  font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ── */
+.profile {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 36px 32px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile__photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 12px;
+  background: var(--cal-blue-bg);
+}
+
+.profile__name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--cal-navy);
+}
+
+.profile__role {
+  font-size: 13px;
+  color: var(--cal-slate);
+  margin-top: 2px;
+}
+
+/* Header state toggle: a page can show a fixed .profile__photo/.profile__name/.profile__role,
+   OR use this brand/specialist swap (logo+brand vs. chosen specialist's photo/initials+name+role,
+   switched per data-step). Only used by pages that need the swap; harmless no-op otherwise. */
+.profile__specialist { display: none; }
+
+.profile__initials {
+  display: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  background: var(--cal-blue-bg);
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cal-blue-text);
+}
+
+body[data-step="date"] .profile__brand,
+body[data-step="time"] .profile__brand,
+body[data-step="summary"] .profile__brand { display: none; }
+
+body[data-step="date"] .profile__specialist,
+body[data-step="time"] .profile__specialist,
+body[data-step="summary"] .profile__specialist { display: block; }
+
+/* ── MAIN (holds the step sections, on step-wizard pages) ── */
+.steps {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes stepIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body * { animation: none !important; }
+}
+
+/* Container (Etch-style): width only, no padding; gutter comes from the section. */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--content-width);
+  align-self: center;
+}
+
+/* ── STEP TITLE (shared) ── */
+.step-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cal-navy);
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/* ── BACK (top-left corner, on step-wizard pages) ── */
+.back-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
+  display: none;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+  color: var(--cal-blue);
+  cursor: pointer;
+}
+
+.back-btn:hover { background: var(--cal-blue-bg); }
+
+/* ── FILTER TABS (segmented pill toggle, e.g. Paslaugos/Temos or Būsimos/Praėjusios) ── */
+.filter-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-tab {
+  flex: 1 1 0;
+  max-width: 160px;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--cal-slate);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+
+.filter-tab:hover { border-color: var(--cal-blue); }
+
+.filter-tab--active,
+.filter-tab--active:hover {
+  border-color: var(--cal-blue);
+  background: var(--cal-blue);
+  color: #fff;
+}
+
+/* ── ROW LIST (e.g. services list): a clickable row with a name + optional meta line + chevron ── */
+.services__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.service {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+}
+
+.service:hover {
+  border-color: var(--cal-blue);
+  background: var(--cal-blue-bg);
+}
+
+.service__name {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cal-navy);
+}
+
+.service__meta {
+  display: block;
+  font-size: 12px;
+  color: var(--cal-slate);
+  margin-top: 2px;
+}
+
+.service__chevron {
+  color: var(--cal-slate);
+  flex-shrink: 0;
+}
+
+/* ── CALENDAR (Calendly-style) ── */
+.cal__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 2px;
+  margin-bottom: 18px;
+}
+
+.cal__title {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cal-navy);
+}
+
+.cal__nav-btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--cal-navy);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.cal__nav-btn:hover { background: var(--cal-blue-bg); }
+
+.cal__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 8px;
+}
+
+.cal__weekday {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cal-slate);
+  padding: 4px 0;
+}
+
+.cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 4px;
+}
+
+.cal__grid li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+}
+
+.cal__day {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: default;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--cal-slate);
+  position: relative;
+}
+
+.cal__day--available {
+  background: var(--cal-blue-bg);
+  color: var(--cal-blue-text);
+  cursor: pointer;
+}
+
+.cal__day--available:hover {
+  background: var(--cal-blue);
+  color: #fff;
+}
+
+.cal__day--selected,
+.cal__day--selected:hover {
+  background: var(--cal-blue);
+  color: #fff;
+}
+
+.cal__day--today::after {
+  content: "";
+  position: absolute;
+  bottom: 7px;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ── TIME SLOTS ── */
+.times__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.times__slot {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #c9dcff;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--cal-blue-text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+
+.times__slot:hover {
+  border-color: var(--cal-blue);
+  background: var(--cal-blue-bg);
+}
+
+.times__slot--selected,
+.times__slot--selected:hover {
+  background: var(--cal-blue);
+  border-color: var(--cal-blue);
+  color: #fff;
+}
+
+/* ── SUMMARY ── */
+.summary__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.summary__row dt {
+  font-size: 13px;
+  color: var(--cal-slate);
+}
+
+.summary__row dd {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cal-navy);
+  text-align: right;
+}
+
+.pay-btn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: var(--cal-blue);
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pay-btn:hover { background: var(--cal-blue-text); }
+
+.pay-btn:disabled {
+  background: var(--bg);
+  color: var(--subtle);
+  cursor: not-allowed;
+}
+
+/* ── TEXT INPUT (form fields, e.g. auth email or checkout card details) ── */
+.text-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.text-input::placeholder { color: var(--subtle); }
+.text-input:focus { outline: none; border-color: var(--cal-blue); }
+
+/* ── DIVIDER (e.g. "arba el. paštu" / "arba kortele") ── */
+.divider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0;
+  color: var(--subtle);
+  font-size: 12px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── STACKED BUTTONS (e.g. Google/Apple sign-in, Apple/Google Pay) ── */
+.stack-btns {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stack-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.stack-btn:hover { background: var(--bg); }
+
+.stack-btn--dark {
+  background: #000;
+  border-color: #000;
+  color: #fff;
+}
+
+.stack-btn--dark:hover { background: #1a1a1a; }
+
+/* ── FOOTER TABS (logged-in only) ── */
+.tabs {
+  display: none;
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+  padding: 8px 0;
+}
+
+body.is-authenticated .tabs { display: block; }
+
+.tabs__items { display: flex; align-items: stretch; }
+
+.tabs__items > li { flex: 1; display: flex; }
+
+.tabs__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 4px 0;
+  border: none;
+  background: none;
+  color: var(--subtle);
+  text-decoration: none;
+  cursor: pointer;
+  font: inherit;
+  line-height: normal;
+}
+
+.tabs__item--active { color: var(--cal-blue); }
+.tabs__item span { font-size: 10px; font-weight: 500; }
+
+/* ── COMPACT (container query): full-bleed when little space is available ── */
+@container (max-width: 640px) {
+  body[data-step="date"] .profile__photo,
+  body[data-step="date"] .profile__name,
+  body[data-step="time"] .profile__photo,
+  body[data-step="time"] .profile__name,
+  body[data-step="summary"] .profile__photo,
+  body[data-step="summary"] .profile__name { display: none; }
+
+  body[data-step="date"] .profile,
+  body[data-step="time"] .profile,
+  body[data-step="summary"] .profile {
+    padding: 0;
+    border-bottom: none;
+  }
+
+  body {
+    max-width: none;
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

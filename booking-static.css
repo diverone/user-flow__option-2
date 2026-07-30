@@ -1,0 +1,106 @@
+.booking-step {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px 32px 32px;
+}
+
+body.has-back .back-btn {
+  display: flex;
+  color: transparent;
+  font-size: 0;
+}
+
+body.has-back .back-btn svg { display: none; }
+
+body.has-back .back-btn::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolyline points='15 18 9 12 15 6' fill='none' stroke='%23006bff' stroke-width='2.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+body.booking-context .profile__brand { display: none; }
+body.booking-context .profile__specialist { display: block; }
+
+.booking-link { text-decoration: none; }
+.booking-link.times__slot { display: block; }
+
+.format__list,
+.specialists__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.format-option,
+.specialist {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.format-option { justify-content: space-between; }
+.format-option:hover,
+.specialist:hover { border-color: var(--cal-blue); background: var(--cal-blue-bg); }
+
+.format-option__name,
+.specialist__name { display: block; font-size: 15px; font-weight: 600; color: var(--cal-navy); }
+.format-option__meta,
+.specialist__meta { display: block; margin-top: 2px; font-size: 12px; color: var(--cal-slate); }
+.format-option__chevron,
+.specialist__chevron { margin-left: auto; color: var(--cal-slate); flex-shrink: 0; }
+
+.specialist__photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--cal-blue-bg);
+}
+
+span.specialist__photo { display: flex; align-items: center; justify-content: center; color: var(--cal-blue-text); font-size: 13px; font-weight: 600; }
+.service__meta, .specialist__meta { font-style: normal; }
+
+.booking-static-selected { border-color: var(--border); background: #fff; }
+
+.booking-link.cal__day--selected {
+  background: var(--cal-blue-bg);
+  color: var(--cal-blue-text);
+}
+
+.booking-link.cal__day--selected:hover {
+  background: var(--cal-blue);
+  color: #fff;
+}
+
+.booking-link.times__slot--selected {
+  border-color: #c9dcff;
+  background: #fff;
+  color: var(--cal-blue-text);
+}
+
+.booking-link.times__slot--selected:hover {
+  border-color: var(--cal-blue);
+  background: var(--cal-blue-bg);
+  color: var(--cal-blue-text);
+}
+
+.booking-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+.booking-tabs input { position: absolute; opacity: 0; }
+.booking-tabs label { flex: 1; padding: 7px 14px; border: 1px solid var(--border); border-radius: 999px; color: var(--cal-slate); font-size: 13px; font-weight: 600; text-align: center; cursor: pointer; }
+.booking-tabs input:checked + label { border-color: var(--cal-blue); background: var(--cal-blue); color: #fff; }
+.booking-tab-panel { display: none; }
+.container:has(#services-tab:checked) .booking-tab-panel--services,
+.container:has(#themes-tab:checked) .booking-tab-panel--themes { display: block; }
+
+.container:has(#specialists-tab:checked) .booking-tab-panel--specialists,
+.container:has(#dates-tab:checked) .booking-tab-panel--dates { display: block; }
+
+label[for="dates-tab"] { font-size: 0; }
+label[for="dates-tab"]::after { content: "Data / Laikas"; font-size: 13px; }
