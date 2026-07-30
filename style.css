@@ -29,6 +29,7 @@ ul { list-style: none; }
 /* ── PAGE: html centers the card, provides the backdrop + query container ── */
 html {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
