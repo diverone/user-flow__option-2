@@ -437,7 +437,7 @@ body[data-step="summary"] .profile__specialist { display: block; }
   border-radius: 12px;
   background: #fff;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text);
 }
 
