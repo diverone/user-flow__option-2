@@ -1,7 +1,6 @@
 .schedule-page { background: #fff; }
-.profile--clinic, .profile--specialist { display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 12px; min-height: 0; text-align: left; }
+.profile--clinic, .profile--specialist { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 12px; min-height: 0; text-align: left; }
 .profile--clinic .profile__photo, .profile--specialist .profile__photo { width: 48px; height: 48px; margin: 0; }
-.profile--clinic--with-back, .profile--with-back { padding-left: 80px; }
 .booking-selection-summary { display: flex; align-items: center; gap: 10px; min-height: 60px; margin: 24px 32px 0; padding: 0 12px; border: 1px solid var(--border); border-radius: 12px; color: var(--cal-navy); text-decoration: none; box-sizing: border-box; }
 .booking-selection-summary__copy { min-width: 0; flex: 1; }
 .booking-selection-summary__label { display: block; margin-bottom: 3px; color: var(--cal-slate); font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
