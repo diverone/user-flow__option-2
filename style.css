@@ -57,9 +57,10 @@ body {
 
 /* ── HEADER ── */
 .profile {
+  position: relative;
   flex-shrink: 0;
   text-align: center;
-  padding: 18px;
+  padding: 24px 18px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -151,8 +152,9 @@ body[data-step="summary"] .profile__specialist { display: block; }
 /* ── BACK (top-left corner, on step-wizard pages) ── */
 .back-btn {
   position: absolute;
-  top: 16px;
+  top: 100%;
   left: 16px;
+  transform: translateY(-50%);
   z-index: 5;
   display: none;
   width: 32px; height: 32px;

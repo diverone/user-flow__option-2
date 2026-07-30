@@ -2,17 +2,18 @@
 .profile--clinic, .profile--specialist { display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 12px; min-height: 0; text-align: left; }
 .profile--clinic .profile__photo, .profile--specialist .profile__photo { width: 48px; height: 48px; margin: 0; }
 .profile--clinic--with-back, .profile--with-back { padding-left: 80px; }
-.booking-selection-summary { display: flex; align-items: center; gap: 10px; margin: 14px 32px 0; padding: 12px; border: 1px solid var(--border); border-radius: 12px; color: var(--cal-navy); text-decoration: none; }
+.booking-selection-summary { display: flex; align-items: center; gap: 10px; min-height: 60px; margin: 24px 32px 0; padding: 0 12px; border: 1px solid var(--border); border-radius: 12px; color: var(--cal-navy); text-decoration: none; box-sizing: border-box; }
 .booking-selection-summary__copy { min-width: 0; flex: 1; }
 .booking-selection-summary__label { display: block; margin-bottom: 3px; color: var(--cal-slate); font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
 .booking-selection-summary__name { display: block; overflow: hidden; font-size: 13px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
 .booking-selection-summary__meta { display: block; margin-top: 3px; color: var(--cal-slate); font-size: 12px; }
 .booking-selection-summary__edit { flex: 0 0 auto; color: var(--cal-blue); }
 .booking-selection-summary--specialist { margin-top: 8px; }
+.booking-selection-summary--date { margin-top: 8px; }
 .booking-selection-summary--time { margin-top: 8px; }
 .booking-selection-summary__photo { width: 36px; height: 36px; flex: 0 0 auto; border-radius: 50%; object-fit: cover; }
-.checkout-alternative .checkout-selection-cards { display: grid; gap: 8px; margin: 14px 32px 0; }
-.checkout-alternative .booking-selection-summary { height: 68px; margin: 0; }
+.checkout-alternative .checkout-selection-cards { display: grid; gap: 8px; margin: 0 0 18px; }
+.checkout-alternative .booking-selection-summary { margin: 0; }
 .checkout-alternative .checkout__payment-section { margin-top: 8px; }
 .booking-step--with-summary { padding-top: 18px; }
 .schedule__location { position: relative; margin-top: 5px; color: var(--cal-slate); font-size: 13px; }
@@ -72,6 +73,5 @@
 @container (max-width: 640px) {
   .booking-step,
   .checkout { padding-left: 25px; padding-right: 25px; }
-  .booking-selection-summary,
-  .checkout-alternative .checkout-selection-cards { margin-left: 25px; margin-right: 25px; }
+  .booking-selection-summary { margin-left: 25px; margin-right: 25px; }
 }
