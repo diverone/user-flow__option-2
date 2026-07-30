@@ -67,3 +67,11 @@
 .schedule__name { margin-top: 3px; color: var(--cal-navy); font-size: 17px; font-weight: 700; }
 .schedule__meta { margin-top: 7px; color: var(--cal-slate); font-size: 12px; line-height: 1.55; }
 .schedule__action { grid-column: 1 / -1; width: 100%; margin-top: 2px; padding: 10px; border-radius: 8px; background: var(--cal-blue); color: #fff; font-size: 13px; font-weight: 600; text-align: center; text-decoration: none; }
+
+/* ── MOBILE EDGE PADDING: narrower side gutters once the card goes full-bleed ── */
+@container (max-width: 640px) {
+  .booking-step,
+  .checkout { padding-left: 25px; padding-right: 25px; }
+  .booking-selection-summary,
+  .checkout-alternative .checkout-selection-cards { margin-left: 25px; margin-right: 25px; }
+}
