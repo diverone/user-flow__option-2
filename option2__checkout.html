@@ -362,6 +362,8 @@
 
     .checkout__submit {
       display: none;
+      align-items: center;
+      justify-content: center;
       height: 40px;
       margin-top: 24px;
       padding: 0 14px;
@@ -372,7 +374,7 @@
     .checkout__form:has(#payment-card:checked) .checkout__submit--payment,
     .checkout__form:has(#payment-bank:checked) .checkout__submit--payment,
     .checkout__form:has(#payment-on-site:checked) .checkout__submit--on-site {
-      display: block;
+      display: flex;
     }
 
     .checkout__form:has(#payment-apple:checked) .checkout__contacts,
@@ -526,8 +528,8 @@
             </div>
           </section>
 
-          <button class="pay-btn checkout__submit checkout__submit--payment" type="button">Apmokėti rezervaciją</button>
-          <button class="pay-btn checkout__submit checkout__submit--on-site" type="button">Patvirtinti rezervaciją</button>
+          <a class="pay-btn checkout__submit checkout__submit--payment" href="option2__success.html">Apmokėti 40 €</a>
+          <a class="pay-btn checkout__submit checkout__submit--on-site" href="option2__success.html">Patvirtinti rezervaciją</a>
         </form>
       </div>
 

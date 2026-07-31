@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mokėjimas sėkmingas</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="booking-static.css">
+  <link rel="stylesheet" href="booking-schedule.css">
+  <style>
+    .checkout__success { text-align: center; padding-top: 16px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .checkout__success-icon { font-size: 36px; margin-bottom: 12px; }
+    .checkout__success .checkout__subtitle { font-size: 13px; color: var(--cal-slate); max-width: 280px; margin: 4px auto 0; }
+    .success-actions { margin-top: 24px; }
+    .success-actions .pay-btn { margin-top: 0; }
+    .pay-btn__inner { display: inline-flex; align-items: center; gap: 8px; }
+  </style>
+</head>
+<body class="is-authenticated">
+  <header class="profile profile--clinic">
+    <img class="profile__photo" src="galibuti_favicon.png" alt="Galibuti logotipas">
+    <div class="schedule__profile-copy">
+      <p class="profile__name">Galibuti</p>
+      <p class="profile__role">Psichologijos ir psichiatrijos klinika</p>
+    </div>
+  </header>
+  <main class="booking-step">
+    <div class="container">
+      <div class="checkout__success">
+        <div class="checkout__success-icon">✅</div>
+        <p class="profile__name">Mokėjimas sėkmingas</p>
+        <p class="checkout__subtitle">Patvirtinimą ir sąskaitą išsiuntėme el. paštu.</p>
+      </div>
+      <dl class="summary__list">
+        <div class="summary__row"><dt>Paslauga</dt><dd>Psichologinis konsultavimas / psichoterapija</dd></div>
+        <div class="summary__row"><dt>Specialistas</dt><dd>Irma Petraitytė</dd></div>
+        <div class="summary__row"><dt>Data</dt><dd>Tre, liepos 29</dd></div>
+        <div class="summary__row"><dt>Laikas</dt><dd>12:00</dd></div>
+        <div class="summary__row"><dt>Formatas</dt><dd>Gyvai</dd></div>
+        <div class="summary__row"><dt>Kaina</dt><dd>40 €</dd></div>
+      </dl>
+      <div class="stack-btns success-actions">
+        <a class="pay-btn" href="#">
+          Pridėti į kalendorių
+        </a>
+        <a class="stack-btn" href="option2__location.html">
+          Rezervuoti dar vieną laiką
+        </a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

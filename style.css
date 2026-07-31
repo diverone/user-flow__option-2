@@ -408,6 +408,7 @@ body[data-step="summary"] .profile__specialist { display: block; }
 }
 
 .pay-btn {
+  display: block;
   width: 100%;
   margin-top: 24px;
   padding: 14px;
@@ -418,7 +419,10 @@ body[data-step="summary"] .profile__specialist { display: block; }
   font-family: inherit;
   font-size: 15px;
   font-weight: 600;
+  text-align: center;
+  text-decoration: none;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .pay-btn:hover { background: var(--cal-blue-text); }
@@ -485,6 +489,7 @@ body[data-step="summary"] .profile__specialist { display: block; }
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
 }
 
