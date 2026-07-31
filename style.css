@@ -389,6 +389,7 @@ body[data-step="summary"] .profile__specialist { display: block; }
 
 .summary__row {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   padding: 14px 0;
